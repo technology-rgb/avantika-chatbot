@@ -1,0 +1,304 @@
+AVANTIKA UNIVERSITY - ACADEMIC ORDINANCES
+Programs: B.Tech, B.Des, MBA, M.Des, M.Tech, MCA
+Ujjain, Madhya Pradesh | An MIT Group Institution
+(Under NEP 2020)
+
+=== ORDINANCE NO. 26: BACHELOR OF TECHNOLOGY (B.Tech) ===
+
+Program Overview:
+- Duration: 4 years / 8 semesters
+- Full-time degree program in Engineering & Technology
+- Under NEP 2020, AICTE and State Government of Madhya Pradesh guidelines
+- Medium of instruction: English (other languages may be used as per regulatory requirements)
+
+Admission Eligibility:
+- Minimum 45% marks in Physics, Chemistry, and Mathematics (PCM) in 10+2 (or equivalent)
+- As per AICTE / State Government of Madhya Pradesh / UGC guidelines
+- The minimum qualification is decided by the respective Board of Studies and approved by Academic Council of the University
+
+Examination Structure:
+- First Year: First Semester Exam + Second Semester Exam
+- Second Year: Third Semester Exam + Fourth Semester Exam
+- Third Year: Fifth Semester Exam + Sixth Semester Exam
+- Fourth Year: Seventh Semester Exam + Eighth Semester Exam
+
+Assessment Components:
+- CCE (Continuous Comprehensive Evaluation): assignments, quizzes, practicals, lab work, class participation
+- End Semester Examination: time-bound written exams
+- Practical / Lab examinations
+- Major Project (final year)
+- Compulsory Internship/Industrial Training (third or fourth year)
+
+Internship:
+- Internship is compulsory as part of the B.Tech program
+- The Major Project pertains to the internship, jointly assessed by the University and the host organization
+- Decision on equivalent courses for internship taken by the respective Board of Studies approved by Academic Council
+
+ATKT (Allowed to Keep Terms) Rules:
+- A student is allowed to appear in next year/semester examinations even with failed subjects (backlogs), subject to prescribed limits
+- Maximum number of backlog subjects to continue to the next year/semester is specified in Academic Regulations
+- A student cannot proceed to the next higher year if backlog count exceeds the prescribed limit
+- Students must clear all backlogs within the maximum program duration
+
+Maximum Program Duration:
+- B.Tech program must be completed within 8 years (double the 4-year normal duration)
+- Students who cannot complete within this duration may be considered for re-admission as per university policy
+
+GRADING SYSTEM (Choice Based Credit System — applicable to all programs):
+
+Grade | % Marks Range | Grade Points | Description
+A+    | 90 – 100      | 10           | Outstanding
+A     | 81 – 90       | 9            | Excellent
+B+    | 71 – 80       | 8            | Very Good
+B     | 61 – 70       | 7            | Good
+C     | 51 – 60       | 6            | Average
+D     | 41 – 50       | 5            | Satisfactory
+F     | Below 41      | 0            | Fail
+FR    | —             | 0            | Fail due to Ragging
+W     | —             | 0            | Withdrawn
+
+Note: FR grade is awarded when a student is found guilty of ragging. W grade is awarded on withdrawal from a course.
+
+SGPA (Semester Grade Point Average):
+SGPA = Σ(Ci × Gi) / ΣCi
+where Ci = credit of i-th subject in that semester, Gi = grade point obtained in i-th subject
+
+CGPA (Cumulative Grade Point Average):
+CGPA = Σ(Ci × Si) / ΣCi
+where Si = SGPA of i-th semester, Ci = total credits in that semester
+
+Percentage Conversion:
+Percentage = CGPA × 10
+
+CGPA to Division (Award of Degree — B.Tech):
+CGPA Score           | Division
+8.5 and above        | First Class with Distinction
+6.5 to below 8.5     | First Class
+5.5 to below 6.5     | Second Class
+4.5 to below 5.5     | Pass Class
+Below 4.5            | Fail
+
+Award of B.Tech Degree:
+- Must pass all 8 semesters and all prescribed subjects/courses
+- Must complete compulsory internship
+- Must fulfil credit requirements as prescribed by Board of Studies
+- No outstanding dues to the University
+- No pending disciplinary proceedings
+
+Promotion to Higher Year (B.Tech):
+- First to Second Year: may be promoted with backlogs not exceeding prescribed limit
+- Second to Third Year: may be promoted with backlogs not exceeding prescribed limit
+- Third to Fourth Year: may be promoted with backlogs not exceeding prescribed limit
+- Academic probation applies to students who exceed backlog limits
+
+Re-admission:
+- Candidates unable to complete program within stipulated time may be considered for re-admission as per university policy
+- Subject to Academic Council approval
+
+=== ORDINANCE NO. 27: BACHELOR OF DESIGN (B.Des) ===
+
+Program Overview:
+- Duration: 4 years / 8 semesters
+- Full-time degree program in Design
+- Under NEP 2020 and relevant regulatory body (AICTE/UGC)
+- Studio-based and project-based pedagogy
+
+Admission Eligibility:
+- Minimum qualification as per provisions of the relevant Regulatory Body, AICTE, UGC and University guidelines
+- Portfolio/aptitude test may be required as part of admissions process
+- As per State Government of Madhya Pradesh guidelines
+
+Examination Structure:
+- Same semester-wise structure as B.Tech (8 semesters over 4 years)
+- Jury-based assessment panels for design studio work (internal + external experts)
+- Rubric-based evaluation using standardised assessment sheets
+- Theory subjects may have written examinations
+- Major Design Project in final year
+
+Assessment:
+- CCE through studio reviews, critiques, assignments, participation
+- Jury Assessment: formal end-of-semester panels evaluate projects
+- Venue-wise lists displayed at least 3 days before Jury
+
+Grading, SGPA, CGPA: Same grading system as B.Tech (A+ to F/FR/W)
+
+CGPA to Division (B.Des):
+Same criteria as B.Tech (8.5+ Distinction, 6.5+ First Class, 5.5+ Second Class, 4.5+ Pass)
+
+ATKT Rules, Maximum Duration, Award of Degree: Same framework as B.Tech
+
+=== ORDINANCE NO. 28: MASTER OF DESIGN (M.Des) ===
+
+Program Overview:
+- Duration: 2 years / 4 semesters (Post Graduate)
+- Advanced design education with research component
+- Dissertation/Thesis in final semester
+
+Admission Eligibility:
+- Minimum qualification: Bachelor's degree in Design, Architecture, Fine Arts, Engineering, or equivalent as per regulatory requirements
+- Entrance exam / portfolio / interview as per university requirements
+
+Examination Structure:
+- First Semester M.Des Exam
+- Second Semester M.Des Exam
+- Third Semester M.Des Exam
+- Fourth Semester M.Des Exam (includes Dissertation/Thesis evaluation)
+
+Assessment:
+- CCE through studio work, seminars, presentations, research progress
+- Jury and panel-based evaluation for design work
+- Dissertation defence/viva voce in final semester
+
+Grading: Same Choice Based Credit System as undergraduate programs (A+ to F/FR/W)
+
+CGPA to Division (M.Des):
+Same CGPA-based criteria as undergraduate programs
+
+Maximum Duration: M.Des must be completed within 4 years (double the 2-year normal duration)
+
+=== ORDINANCE NO. 29: MASTER OF BUSINESS ADMINISTRATION (MBA) ===
+
+Program Overview:
+- Duration: 2 years / 4 semesters (Post Graduate)
+- Management education program
+- Under AICTE/UGC guidelines
+
+Admission Eligibility:
+- Minimum qualification: Bachelor's degree with required percentage as per AICTE/UGC norms
+- Entrance exam (CAT/MAT/CMAT/university entrance) may be required
+- As per provisions of the relevant Regulatory Body duly approved by Academic Council
+
+Examination Structure:
+- First Semester MBA Exam
+- Second Semester MBA Exam
+- Summer Internship (between Year 1 and Year 2)
+- Third Semester MBA Exam
+- Fourth Semester MBA Exam (includes MBA Project/Dissertation)
+
+Assessment:
+- CCE through case studies, assignments, presentations, group projects
+- End semester written examinations
+- Summer internship project report
+- Final MBA Project/Dissertation
+
+Grading: Same Choice Based Credit System (A+ to F/FR/W)
+
+CGPA to Division (MBA): Same CGPA criteria as other programs
+
+Maximum Duration: MBA must be completed within 4 years
+
+=== ORDINANCE NO. 30: MASTER OF TECHNOLOGY (M.Tech) ===
+
+Program Overview:
+- Duration: 2 years / 4 semesters (Post Graduate)
+- Advanced engineering/technology specialization
+- Under AICTE/UGC guidelines (NEP 2020)
+
+Admission Eligibility:
+- Minimum qualification: B.Tech/B.E. or equivalent degree in relevant branch with required percentage
+- In accordance with Rollout Directions of the relevant Regulatory Body (AICTE/UGC)
+- As per provisions of the State Government of Madhya Pradesh
+- The Admission Policy, eligibility & Selection Procedure may be reviewed and amended as per norms and guidelines of UGC from time to time, subject to approval of Academic Council
+
+Examination Structure:
+- First Semester M.Tech Exam
+- Second Semester M.Tech Exam
+- Third Semester M.Tech Exam
+- Fourth Semester M.Tech Exam (includes M.Tech Thesis/Dissertation)
+
+Assessment:
+- CCE through assignments, lab work, seminars, research progress
+- End semester examinations
+- Thesis/Dissertation: research work, publication (if applicable), viva voce
+
+Grading: Same Choice Based Credit System (A+ to F/FR/W)
+CGPA to Division: Same criteria as other programs
+Maximum Duration: M.Tech must be completed within 4 years
+
+=== ORDINANCE NO. 31: MASTER OF COMPUTER APPLICATIONS (MCA) ===
+
+Program Overview:
+- Duration: 2 years / 4 semesters (Post Graduate)
+- Under UGC/AICTE guidelines
+- Computer Applications with programming, software development, and project work
+
+Admission Eligibility:
+- Minimum qualification: Bachelor's degree with Mathematics as a subject (B.Sc./BCA/B.Tech or equivalent)
+- As per UGC/AICTE norms and university guidelines
+
+Examination Structure:
+- First Semester MCA Exam
+- Second Semester MCA Exam
+- Third Semester MCA Exam
+- Fourth Semester MCA Exam (includes MCA Project)
+
+Assessment:
+- CCE through programming assignments, lab work, mini-projects
+- End semester written and practical examinations
+- Major project in final semester with viva voce
+
+Grading: Same Choice Based Credit System (A+ to F/FR/W)
+CGPA to Division: Same criteria
+Maximum Duration: MCA must be completed within 4 years
+
+=== GENERAL PROVISIONS (ALL PROGRAMS) ===
+
+Credit Mapping and Transfer:
+- Subjects/courses carry credits as prescribed by Board of Studies and approved by Academic Council
+- MOOC/online course credit transfer applicable as per NEP 2020 guidelines (specific credits as prescribed)
+- Add-on courses may contribute to credit count as per regulations
+
+Academic Integrity:
+- UFM (Unfair Means) provisions apply to all programs
+- Ragging results in FR grade (Fail due to Ragging) for that semester
+- Academic misconduct handled by Disciplinary/UFM Committee
+
+Re-examination Policy:
+- Supplementary/Backlog examinations available for failed subjects
+- Makeup examinations for students with approved absence
+- Improvement examinations to improve grades (original CCE carried forward)
+- Application process: School Dean signs, fees paid, application submitted to Exam Office
+
+Attendance Requirements:
+- Minimum attendance as per University regulations required to appear in examinations
+- Students below minimum attendance threshold may be detained from appearing in exams
+- Medical/special leave may be considered with proper documentation
+
+Grading Remarks:
+- Incomplete (I): awarded when CCE/work is not completed; student must complete within next semester
+- W (Withdrawn): student withdraws from course before completion; zero grade points
+- FR (Fail due to Ragging): awarded on proven ragging; zero grade points; appears on transcript
+
+Transcript:
+- Official transcripts issued by Controller of Examinations (CoE)
+- Grades for each course, SGPA for each semester, and CGPA listed
+- Percentage equivalent (CGPA × 10) stated as per CoE notification
+- Transcript requested through Student Office with No-Dues clearance
+
+Award of Degree — Common Conditions:
+1. Passed all prescribed courses/subjects in all semesters
+2. Completed compulsory internship/project as required by program
+3. Fulfilled minimum credit requirements as prescribed
+4. No outstanding fee dues to the University
+5. No pending disciplinary proceedings
+6. Fulfilled attendance requirements
+
+Division is awarded only after completion of the full program, based on overall CGPA.
+
+Governing Authority:
+- Academic Council of Avantika University is the supreme academic body
+- Board of Studies (per School/Department) prescribes curriculum, credits, evaluation schemes
+- Controller of Examinations (CoE) administers examinations and results
+- Vice Chancellor approves final decisions on degree awards, special cases
+- UGC/AICTE regulations and NEP 2020 framework govern overall academic structure
+
+Programs Offered at Avantika University:
+Undergraduate (4-year):
+- B.Tech (Bachelor of Technology) — Ordinance 26
+- B.Des (Bachelor of Design) — Ordinance 27
+
+Postgraduate (2-year):
+- M.Des (Master of Design) — Ordinance 28
+- MBA (Master of Business Administration) — Ordinance 29
+- M.Tech (Master of Technology) — Ordinance 30
+- MCA (Master of Computer Applications) — Ordinance 31

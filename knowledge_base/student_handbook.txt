@@ -1,0 +1,337 @@
+AVANTIKA UNIVERSITY - STUDENT HANDBOOK
+Ujjain, Madhya Pradesh | An MIT Group Institution
+Academic Year 2025-26
+
+=== SECTION 1: ABOUT THIS HANDBOOK ===
+
+Welcome to Avantika University. This handbook brings together the policies and procedures that most directly affect student life — from enrolment and examinations to hostel living, health services, transport and the support available to students. It has been compiled from the University's official Standard Operating Procedures (SOPs).
+
+This handbook is a reader-friendly summary. Where any question of interpretation arises, the University's approved SOPs, the Academic Regulations, and UGC norms shall prevail. Procedures, fees and timelines are reviewed periodically; always confirm the current position with the relevant office, the ERP portal, or official notice boards.
+
+First point of contact: For most day-to-day matters the relevant office (Student Office, Exam Office, Hostel Warden, Health Centre, Transport Office, or Faculty Mentor) is the first point of contact. A consolidated list of helplines and key contacts is published on the University website, ERP portal and notice boards at the start of each academic year.
+
+=== SECTION 2: ADMISSION, ENROLMENT & REGISTRATION ===
+
+Once admitted, the Student Office manages enrolment and registration. The process confirms records, verifies documents, and sets up digital access before classes begin.
+
+Before Arrival:
+Admitted students receive an email on their registered email ID with the enrolment form link, document checklist, academic calendar, reporting date and orientation schedule. These communications are sent at least 10 days before the reporting date. Complete the enrolment form and keep listed documents and study materials ready before travelling to campus.
+
+Reporting and Document Verification:
+A student reporting desk is set up on the reporting date with dedicated staff to guide students through the process. Document verification is completed on the day of reporting (or within 3 working days if arriving late). A checklist of required original documents is used for every student, and an acknowledgement report is generated listing documents submitted and retained, signed by the student and verifying officer. Hostel residents are identified with the help of the Wardens, who submit the reporting list on the reporting day.
+
+Registration, Email ID and LMS:
+Course registration is completed within 5 working days of reporting. If unable to register, the Student Office will assist within 24 hours of reporting the issue. University email ID and LMS account are created by the ICT team / LMS administrator, normally within 3 working days of the confirmed list.
+
+Key definitions:
+- SIS (Student Information System): holds academic records and course registration
+- LMS (Learning Management System): where students access course content, assignments and announcements
+- ERP Portal: the University's system used to publish results and notifications
+
+=== SECTION 3: ACADEMIC ASSESSMENT & EXAMINATIONS ===
+
+Assessment at Avantika University combines continuous internal evaluation with end-of-semester assessment. The Exam Office, headed by the Controller of Examinations (CoE), administers the process.
+
+CCE (Continuous & Comprehensive Evaluation):
+CCE is the ongoing internal assessment carried out through the semester — assignments, LMS activities, quizzes, class participation and studio/lab work. CCE marks are recorded by course faculty and entered in the University's systems. Faculty submit CCE marks within the deadlines set in the Examination Calendar (typically within one to two weeks of a course's completion).
+
+Jury Assessment (Project/Applied Work):
+A Jury is a formal end-of-semester assessment panel of internal and external experts who evaluate project work against defined rubrics. The School of Design follows Jury-based assessment for its courses, and other Schools use Juries for project, field and applied work. Venue-wise student lists are displayed on notice boards at least 3 days before the Jury.
+
+Written Examinations:
+Schools of Engineering, Management, Law, Agriculture and Psychology conduct written, time-bound, supervised examinations in designated halls. Key points:
+- Exam timetable shared via email, ERP portal or notice boards in advance
+- Seating plan displayed at venue entrance 30 minutes before each exam
+- Invigilators supervise the hall and maintain academic integrity
+- Paper Showing: after results, students may view assessed answer sheets (written exams only) on written request, within 5 working days of result declaration. This is read-only viewing — no marks changed during the session.
+
+Grades and Result Classes:
+Performance in each course is reported as a grade. Grades range from A+ (highest) down to F, with additional notations such as FR (Fail due to Ragging). SGPA and CGPA are calculated as credit-weighted averages.
+
+CGPA Formula: CGPA = Σ(Ci × Si) / ΣCi
+where Si = SGPA of the i-th semester, Ci = total credits in that semester.
+
+Percentage Conversion: Percentage = CGPA × 10
+
+Result Classes:
+- First Class with Distinction
+- First Class
+- Second Class
+- Pass Class
+- Fail
+(Exact CGPA cut-offs defined in the Academic Regulations)
+
+Result Declaration and Fee Clearance:
+Results are processed and declared after verification by the CoE and the School. If a student has outstanding fees at the time of result declaration, the result is withheld on the ERP portal until the Accounts department confirms full clearance. Clear dues well in advance of results.
+
+Grievance & Re-evaluation:
+Students may contest CCE or end-semester/Jury results through the formal grievance process. Submit application in writing. Re-evaluation decisions are final and no further appeals are entertained.
+
+Unfair Means (UFM):
+UFM includes copying, use of unauthorised material, and impersonation during an examination. If UFM is suspected:
+1. Invigilator confiscates material, allows student to complete exam under observation
+2. UFM report filed the same day
+3. Case reviewed by CoE and referred to Disciplinary/UFM Committee
+4. Student given opportunity to present case at hearing within 7 working days of report
+Outcomes may include cancellation of the paper, cancellation of the exam attempt, or suspension. All cases recorded and reported to Registrar and IQAC.
+
+=== SECTION 4: SUPPLEMENTARY, BACKLOG, MAKEUP, IMPROVEMENT & SUMMER TERM EXAMS ===
+
+If a student fails a course, misses an exam for an approved reason, or wishes to improve a grade, the following exam types are available. School Dean must verify eligibility and sign the application before it is processed. Examination fees apply.
+
+Types of Special Exams:
+- Supplementary/Backlog: for students who fail; CCE is done afresh in the special exam term (previous CCE does not carry forward)
+- Makeup: for students who missed an exam for approved reasons
+- Improvement: to improve grades; original CCE carries forward, only end-semester exam/Jury is re-attempted
+- Summer Term: additional exam term offered in summer as applicable
+
+ATKT (Allowed to Keep Terms):
+ATKT is the policy defining the maximum number of backlogs a student may carry while progressing to the next year/semester. Backlog eligibility follows the ATKT rules in the Academic Regulations.
+
+Conditions:
+- Fees must be paid before application submitted; cash not accepted
+- Cannot appear while fees outstanding or on academic probation/suspension (unless approved in writing by Dean and CoE)
+- Application form available from Exam Office
+
+Notification:
+Exam Office notifies eligible students by email at least 30 days before the exam, with the application form, fee structure, application window and grievance process. Exam timetable shared at least 8 days before the first exam.
+
+=== SECTION 5: INTERNAL SCHOLARSHIPS ===
+
+Avantika University offers internal scholarships to recognise and support deserving students on the basis of merit, financial need, or both. The Student Office runs the scholarship cycle.
+
+How it works:
+1. Notification: Student Office emails all students announcing the scholarship at least 14 days before submission deadline, stating scholarship name, value, eligibility criteria, required documents, submission mode and contact for queries.
+2. Application: Submit completed scholarship form in hard copy with required supporting documents before the deadline. Late submissions not accepted; any extension requires Registrar's approval.
+3. Scrutiny: Applications reviewed for completeness, eligibility and valid documents within 4 working days of the deadline. Both shortlisted and non-shortlisted applicants informed by email within 2 working days.
+4. Interview: A three-member panel (Student Office Dean/Manager and two faculty/senior members) evaluates shortlisted candidates against academic performance, financial need, supporting documents, and personal motivation using a standardised scoring rubric.
+5. Selection & Disbursement: Final awardee list approved by Vice Chancellor, after which Finance department disburses scholarship to account or adjusts against fee dues.
+
+=== SECTION 6: TRANSCRIPTS, CERTIFICATES & NO-DUES ===
+
+The Student Office, with the Exam Section, issues academic transcripts and certificates. All clearances must be obtained before any document is released. Documents handed over only to the student or formally authorised person.
+
+Requesting a Transcript (before convocation):
+1. Email transcript request to Student Office: name, enrolment number, programme, year, purpose, preferred collection mode (in person or by post)
+2. Collect No-Dues Form from Student Office (issued within 1 working day)
+3. Get No-Dues Form signed/stamped by all relevant departments — Accounts, Library, Hostel, etc. (each department signs within 2 working days; pending dues communicated for settlement)
+4. Once clearances verified (within 2 working days of submission), request forwarded to Exam Section
+5. Processing takes 5–7 working days for a digital copy and 2–3 weeks for a hard copy
+6. Student notified when transcript ready (within 1 working day of receipt from Exam Section)
+
+At or After Convocation:
+For graduating batches, Student Office begins the No-Dues process at least 30 days before convocation; departments complete their part within 5 working days of receiving the batch list.
+
+Collection and Authorisation:
+- Collect in person
+- Request postal dispatch (provide address; pay postage/courier in advance; office retains proof of dispatch)
+- Authorise a third party: authorised person must bring original authorisation letter and copy of their photo ID. No document is handed to an unauthorised person under any circumstances.
+
+=== SECTION 7: MENTORING, COUNSELLING & STUDENT WELLNESS ===
+
+Every student is supported by a faculty mentor and has access to counselling and wellness resources.
+
+Faculty Mentor System:
+- Each mentor assigned 15–20 students (mentees) for the academic year
+- Students informed of assigned mentor and schedule in the first week of the semester
+- Mentors hold at least one formal session in the first week of every month
+- Minimum 8 recorded sessions per academic year
+- Open Office Hours: at least 1 hour per week for urgent concerns
+- Mentors maintain a monthly log and submit a semester-end Action Taken Report
+- Student Wellness Committee audits a random sample of logs every quarter
+
+Red Flag Situations (requiring immediate escalation within 24 hours):
+- Risk of self-harm
+- Substance abuse
+- Severe academic failure
+- Serious disciplinary breach
+
+In such cases, the mentor escalates within 24 hours so the student receives appropriate help.
+
+Counselling:
+Mentoring sessions are confidential and conversational, covering academic, personal and career matters. Campus counsellor and Health Centre also provide mental health support. Students showing distress are referred to the counsellor/psychologist within 24 hours. Support is available and confidential.
+
+=== SECTION 8: HOSTEL & RESIDENTIAL LIFE ===
+
+The University provides separate Boys and Girls hostels with a Warden responsible for welfare, safety and discipline of residents.
+
+Eligibility:
+- All students enrolled in a full-time programme may apply
+- Priority given to outstation students
+- Students with documented medical/special needs may apply under Special Category
+- Seats subject to availability; allotment does not carry over — reapply each academic year
+- Students with pending disciplinary action or outstanding dues may be denied admission
+
+Room Allotment:
+- Rooms allotted by Warden in consultation with Student Office, based on priority
+- Room preference requests not entertained — rooms allotted at University's discretion
+- Allotment confirmed only on receipt of hostel fee
+- Room change: request after completing at least 30 days in allotted room, by submitting Room Change Request Form with valid reason
+
+Mess Rules:
+- Mess facility is mandatory for all hostel residents
+- No non-vegetarian food allowed on campus
+
+Check-in and Check-out:
+- Bag and luggage check carried out at gate at every check-in
+- Room Condition Inspection Form completed at check-in and check-out; new damage at check-out recovered from student
+- At check-out: submit No-Dues Certificate and return all keys and hostel property
+
+Security and Monitoring:
+- CCTV operates 24×7 in common areas, corridors and entry/exit points (footage retained for at least 30 days)
+- Security conducts night rounds every two hours between 10:00 PM and 6:00 AM
+- University is not liable for theft or damage to personal belongings
+
+Outing and Day-pass Rules:
+- During academic weekdays: Course Lead/Faculty Mentor signs outing pass
+- On weekends and for evening outings: Warden signs and records in outing register
+- Repeated late returns without intimation: first written warning, then suspension of outing, then parental meeting and escalation
+
+Code of Conduct and Prohibited Items:
+Prohibited substances (punishable offence, parents informed):
+- Alcohol and restricted drinks
+- Tobacco and smoking
+- Any nuisance, fighting or quarrelling
+
+Prohibited appliances (fire hazard, fine + seizure):
+- Electric heaters, hot plates, electric irons, electric kettles, immersion rods
+
+Internet: Wi-Fi provided as per IT policy; misuse leads to disconnection and disciplinary action.
+
+Safety:
+- Fire extinguishers at designated points; evacuation plan displayed on every floor
+- At least one fire drill per semester
+- Tampering with fire-safety equipment: immediate disciplinary action
+
+Medical in Hostel:
+- If ill: Warden arranges check-up with Campus Doctor and informs parents
+- Communicable illness: may be moved to designated isolation room
+- Emergency: Warden calls ambulance, informs parents and arranges hospital admission
+
+Complaints:
+- Minor complaints (maintenance, facilities): resolved within 3 working days
+- Serious complaints (misconduct, safety): escalated within 24 hours
+
+=== SECTION 9: HEALTH CENTRE & MEDICAL SERVICES ===
+
+The campus Health Centre provides medical care to students and employees, with timely, safe and compassionate treatment.
+
+Hours and Emergency Cover:
+- OPD Hours: 8:00 AM to 8:00 PM daily, including weekends
+- Duty nurse available on campus 24×7 for emergencies outside OPD hours
+- Campus ambulance with driver available 24×7
+- Emergency contact numbers posted at Health Centre, hostel notice boards, Warden's office, security post and on ERP portal
+
+Services:
+- Consultation (OPD): examination and treatment by campus doctor/nurse; medication dispensed and recorded
+- Emergencies & referrals: patients triaged so most urgent seen first; referred to tie-up hospital when needed; referral process and parental notification handled by Health Centre and Warden
+- Communicable illness: isolation and notification protocols apply to protect others
+- Mental health: operates mental-health and counselling protocol; students showing distress referred within 24 hours
+- Confidentiality: medical information handled in confidence, consistent with patient rights
+
+First-aid boxes maintained across campus and in hostels. Periodic health-awareness sessions and camps conducted.
+
+=== SECTION 10: ANTI-RAGGING ===
+
+Ragging in any form — physical, verbal, psychological or digital — is strictly prohibited at Avantika University and is a punishable offence under law and UGC regulations.
+
+Digital ragging (through WhatsApp, Instagram, email or any social-media platform) is treated as seriously as physical ragging. This policy applies everywhere the University's name is involved — hostels, classrooms, transport, online platforms and off-campus activities.
+
+Obligations and Protections:
+- Every student (and parent/guardian) must submit an anti-ragging undertaking before the start of each academic year; no student officially enrolled without it
+- University runs awareness sessions for freshers and seniors during orientation
+- Anti-ragging information displayed across campus
+- Surprise inspections at least twice a month through the Anti-Ragging Squad
+
+How to Report Ragging:
+- UGC National Anti-Ragging Helpline: 1800-180-5522 (available at all times, 24x7)
+- Contact the Anti-Ragging Cell/Committee directly
+- Anonymous complaints accepted, including via drop box
+- Identity of complainants protected to prevent retaliation
+- Anti-Ragging Cell acknowledges every complaint within 24 hours
+- Dedicated 24×7 contact number posted on website and hostel notice boards
+
+Investigation and Action Timeline:
+- Investigation begins within 24 hours of complaint
+- Anti-Ragging Squad submits findings within 3 working days
+- Committee meets within 5 working days
+- Decision issued within 3 working days of the hearing
+- Accused given opportunity to present their case before any action taken
+- During investigation, victim is counselled and kept safe
+
+Penalties may include: warning, suspension, dismissal, or legal action as per UGC regulations. Guilty findings communicated in writing to student and parents; VC notified.
+
+FR Grade: Students found guilty of ragging are awarded FR (Fail due to Ragging) grade in all courses that semester.
+
+=== SECTION 11: TRANSPORT (BUS SERVICE) ===
+
+The University provides a bus service for students and staff, run by the Transport Coordinator/Officer.
+
+Eligibility and Registration:
+- All full-time students may register via ERP portal or Transport/Student Office
+- Transport fees must be paid before availing the service; no refund after semester begins
+- Registration closes at least 5 working days before semester starts
+- Late requests need Transport Officer approval
+- Must carry Transport ID / fee card / valid University ID when boarding; students without valid ID may be denied entry
+
+Routes and Safety:
+- Routes and timings finalised based on boarding points and published at least 3 days before service begins
+- Mid-semester changes communicated at least 24 hours in advance via SMS/email/WhatsApp
+- Board only allotted bus at designated stop
+- Movement in a moving bus is not allowed
+- Misconduct or damage to property: disciplinary action
+- Emergency contact numbers (Transport Coordinator, Security, Health Centre, 108 ambulance) displayed inside each vehicle
+- Backup vehicle dispatched within 30 minutes in case of breakdown
+
+=== SECTION 12: RAISING A CONCERN - WHICH CHANNEL? ===
+
+Use the right channel for different issues:
+- Academic queries & course issues: Faculty → Course Lead → School Dean
+- Examination results/issues: Exam Office / Controller of Examinations (CoE)
+- Hostel and residential issues: Hostel Warden → Student Office
+- Health and medical issues: Health Centre (24×7 emergency cover)
+- Anti-ragging: Anti-Ragging Cell / UGC Helpline: 1800-180-5522 (24×7)
+- Scholarship/financial: Student Office, then Finance Department
+- Transcripts & certificates: Student Office, then Exam Section
+- Transport issues: Transport Office
+- General student welfare: Student Office / Faculty Mentor
+
+Most issues resolved at the first level. Escalate only if not resolved.
+
+=== SECTION 13: KEY CONTACTS & HELPLINES ===
+
+- UGC National Anti-Ragging Helpline: 1800-180-5522 (24×7, free)
+- Specific phone numbers and names of current office-holders are published on the University website, ERP portal and notice boards at the start of each academic year
+- Campus Ambulance: available 24×7 (number posted at Health Centre, hostels, security post, ERP portal)
+- Health Centre OPD: 8:00 AM – 8:00 PM daily
+- Duty Nurse: 24×7 for emergencies
+
+Offices:
+- Student Office: enrolment, registration, scholarships, transcripts, hostel, overall student welfare
+- Exam Office (Controller of Examinations): examinations, results, re-evaluation, UFM
+- Hostel Warden (Boys/Girls): residential life, room allotment, outing passes, hostel discipline
+- Transport Office: bus registration, routes, timings
+- Health Centre: medical consultation, emergency, counselling referrals
+- Accounts Department: fee clearance, scholarships disbursement
+- Library: no-dues for transcripts
+- Faculty Mentor: first point of contact for academic and personal matters
+
+=== SECTION 14: FORMS ===
+
+Common forms available from the relevant office, Student Office, or University portal:
+- Enrolment Form and document checklist
+- Acknowledgement Report (enrolment)
+- Hostel Admission Form
+- Hostel Undertaking and Anti-Ragging Undertaking
+- Room Condition Inspection Form
+- Room Change Request Form
+- No-Dues Certificate
+- Scholarship application form
+- Transcript request and No-Dues Form
+- Authorisation letter for third-party document collection
+- Supplementary/Backlog/Makeup/Improvement application form
+- Withdrawal Form
+- Exam grievance form
+- Transport registration / fee card
+
+Disclaimer: This handbook is a consolidated summary from official SOPs. It does not replace those SOPs, Academic Regulations, UGC norms, or official notifications, which remain the authoritative sources.
