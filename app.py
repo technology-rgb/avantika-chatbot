@@ -11,6 +11,12 @@ from groq import Groq
 from sentence_transformers import SentenceTransformer
 from dotenv import load_dotenv
 
+try:
+    from streamlit_mic_recorder import speech_to_text
+    STT_AVAILABLE = True
+except ImportError:
+    STT_AVAILABLE = False
+
 load_dotenv()
 
 # ── Config ─────────────────────────────────────────────────────────────────────
@@ -20,7 +26,7 @@ GROQ_MODEL        = "llama-3.3-70b-versatile"
 TOP_K             = 5
 MAX_HISTORY_PAIRS = 4
 
-# ── Lucide-style SVG icons ──────────────────────────────────────────────────────
+# ── Lucide-style SVG icons (18 × 18, stroke 1.8, rounded caps) ────────────────
 def icon(path_d, size=18):
     return (
         f'<svg width="{size}" height="{size}" viewBox="0 0 24 24" fill="none" '
@@ -46,10 +52,11 @@ ICONS = {
     "thumbs_up":   icon('<path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>'),
     "thumbs_down": icon('<path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/>'),
     "message":     icon('<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>'),
-    "mail":        icon('<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>'),
+    "mic":         icon('<path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/>'),
+    "mic_off":     icon('<line x1="1" y1="1" x2="23" y2="23"/><path d="M9 9v3a3 3 0 0 0 5.12 2.12M15 9.34V4a3 3 0 0 0-5.94-.6"/><path d="M17 16.95A7 7 0 0 1 5 12v-2m14 0v2a7 7 0 0 1-.11 1.23"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/>'),
 }
 
-# ── Topics ─────────────────────────────────────────────────────────────────────
+# ── Data ───────────────────────────────────────────────────────────────────────
 TOPICS = [
     ("home",    "Hostel & Accommodation",     "What are the hostel rules and facilities at Avantika University?"),
     ("chart",   "Grades & CGPA",              "Explain the grading system and how CGPA is calculated."),
@@ -74,14 +81,13 @@ SUGGESTED_Q = [
     "How do I apply for a transcript or degree certificate?",
 ]
 
-# Capability cards for welcome screen
 CAPABILITIES = [
-    ("book",    "Academic Rules",          "Grading, CGPA, ATKT, backlog exams, degree requirements"),
-    ("home",    "Campus Life",             "Hostel, health centre, transport, dining, facilities"),
-    ("award",   "Fees & Scholarships",     "Scholarship criteria, application process, fee structure"),
-    ("cpu",     "Programs & Faculty",      "All programs, specializations, faculty directory"),
-    ("shield",  "Student Wellbeing",       "Anti-ragging policy, mentoring, counselling, reporting"),
-    ("phone",   "Contacts & Helplines",    "Department numbers, key contacts, emergency lines"),
+    ("book",    "Academic Rules",       "Grading, CGPA, ATKT, backlog exams, degree requirements"),
+    ("home",    "Campus Life",          "Hostel, health centre, transport, dining, facilities"),
+    ("award",   "Fees & Scholarships",  "Scholarship criteria, application process, fee structure"),
+    ("cpu",     "Programs & Faculty",   "All programs, specializations, faculty directory"),
+    ("shield",  "Student Wellbeing",    "Anti-ragging policy, mentoring, counselling, reporting"),
+    ("phone",   "Contacts & Helplines", "Department numbers, key contacts, emergency lines"),
 ]
 
 SYSTEM_PROMPT = """You are AvantikaBot, the official AI student assistant for Avantika University, Ujjain, Madhya Pradesh (an MIT Group Institution).
@@ -124,6 +130,12 @@ st.markdown("""
 .stApp { background: #EEF3FF; }
 #MainMenu, footer, header, [data-testid="stToolbar"] { display: none !important; }
 
+/* Full-width friendly main container */
+section.main > div.block-container {
+    padding: 1rem 1rem 0.5rem !important;
+    max-width: 100% !important;
+}
+
 /* ── Sidebar ── */
 [data-testid="stSidebar"] {
     background: linear-gradient(170deg, #002A75 0%, #001040 100%) !important;
@@ -135,7 +147,6 @@ st.markdown("""
 [data-testid="stSidebar"] h2,
 [data-testid="stSidebar"] h3 { color: #fff !important; }
 [data-testid="stSidebar"] hr { border-color: rgba(255,255,255,.12) !important; }
-
 [data-testid="stSidebar"] .stButton > button {
     background: rgba(255,255,255,.07) !important;
     color: #C8DCF4 !important;
@@ -147,6 +158,7 @@ st.markdown("""
     font-size: .8rem !important;
     font-weight: 500 !important;
     margin-bottom: 2px !important;
+    min-height: 40px !important;
     transition: background .15s, border-color .15s !important;
 }
 [data-testid="stSidebar"] .stButton > button:hover {
@@ -163,10 +175,11 @@ st.markdown("""
     margin-bottom: 1.1rem;
     display: flex; align-items: center; gap: 1.2rem;
     box-shadow: 0 4px 24px rgba(0,40,120,.28);
+    flex-wrap: wrap;
 }
 .au-header img { height: 38px; flex-shrink: 0; }
 .au-header-divider { width: 1px; height: 36px; background: rgba(255,255,255,.2); flex-shrink: 0; }
-.au-header-text h1 { margin: 0; font-size: 1.05rem; font-weight: 700; color: #fff; }
+.au-header-text h1 { margin: 0; font-size: 1.05rem; font-weight: 700; color: #fff; line-height: 1.2; }
 .au-header-text p  { margin: 2px 0 0; font-size: .75rem; color: #7AAAD8; }
 .au-badge {
     margin-left: auto;
@@ -175,9 +188,12 @@ st.markdown("""
     font-size: .71rem; font-weight: 600;
     display: flex; align-items: center; gap: 5px; white-space: nowrap;
 }
-.status-dot { width: 7px; height: 7px; background: #22C55E; border-radius: 50%; display: inline-block; }
-@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
-.status-dot { animation: pulse 2s infinite; }
+.status-dot {
+    width: 7px; height: 7px; background: #22C55E;
+    border-radius: 50%; display: inline-block;
+    animation: pulse-dot 2s infinite;
+}
+@keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.85)} }
 
 /* ── Chat messages ── */
 [data-testid="stChatMessage"] { border: none !important; background: transparent !important; padding: 0 !important; }
@@ -217,6 +233,36 @@ st.markdown("""
 [data-testid="stChatInput"] button { background: #002A75 !important; border-radius: 50% !important; border: none !important; }
 [data-testid="stChatInput"] button:hover { background: #E64400 !important; }
 
+/* ── Voice input row ── */
+.voice-bar {
+    display: flex; align-items: center; gap: .9rem;
+    background: #fff; border-radius: 12px;
+    padding: .55rem 1rem; margin-bottom: .5rem;
+    border: 1.5px solid #C4D4F0;
+    box-shadow: 0 1px 6px rgba(0,42,117,.07);
+}
+.voice-bar-label {
+    display: flex; align-items: center; gap: .4rem;
+    font-size: .78rem; font-weight: 600; color: #002A75;
+    white-space: nowrap;
+}
+.voice-bar-hint {
+    font-size: .74rem; color: #94A3B8; margin: 0; line-height: 1.4;
+}
+.voice-transcript {
+    background: #F0F5FF; border: 1px solid #C4D4F0;
+    border-radius: 8px; padding: .4rem .8rem;
+    font-size: .8rem; color: #002A75; font-style: italic;
+    margin-top: .3rem;
+}
+
+/* streamlit-mic-recorder button override */
+[data-testid="stCustomComponentV1"] iframe {
+    border: none !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+}
+
 /* ── Welcome ── */
 .welcome-card {
     background: #fff; border-radius: 14px; padding: 1.25rem 1.5rem;
@@ -225,17 +271,18 @@ st.markdown("""
     display: flex; align-items: flex-start; gap: 1rem;
 }
 .welcome-icon {
-    width: 42px; height: 42px;
+    width: 42px; height: 42px; min-width: 42px;
     background: linear-gradient(135deg, #002A75, #004ABB);
     border-radius: 10px; display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; color: #fff;
+    color: #fff;
 }
 .welcome-card h4 { color: #002A75; margin: 0 0 .3rem; font-size: .95rem; font-weight: 600; }
 .welcome-card p  { color: #64748B; margin: 0; font-size: .82rem; line-height: 1.55; }
 
 /* ── Capability cards ── */
 .cap-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px; margin-bottom: 1.2rem;
 }
 .cap-card {
@@ -261,6 +308,7 @@ st.markdown("""
     border: 1.5px solid #C4D4F0 !important; border-radius: 20px !important;
     font-size: .79rem !important; padding: .32rem .9rem !important;
     font-weight: 500 !important; width: 100% !important;
+    min-height: 44px !important;
     transition: all .15s !important;
 }
 .sq-chip button:hover { background: #002A75 !important; color: #fff !important; border-color: #002A75 !important; }
@@ -275,12 +323,6 @@ st.markdown("""
     font-size: .71rem; font-weight: 600;
 }
 
-/* ── Feedback row ── */
-.fb-label {
-    font-size: .72rem; color: #94A3B8;
-    display: flex; align-items: center; gap: 4px;
-}
-
 /* ── Source expander ── */
 [data-testid="stExpander"] {
     border: 1px solid #E2E8F0 !important;
@@ -288,19 +330,16 @@ st.markdown("""
     margin-top: 6px !important;
     background: #fff !important;
 }
-[data-testid="stExpander"] summary {
-    font-size: .75rem !important; color: #94A3B8 !important;
-}
+[data-testid="stExpander"] summary { font-size: .75rem !important; color: #94A3B8 !important; }
 .src-chunk {
     background: #F8FAFC; border-left: 3px solid #C4D4F0;
     border-radius: 0 8px 8px 0; padding: .55rem .85rem;
-    font-size: .8rem; color: #334155; margin-bottom: .5rem;
-    line-height: 1.6;
+    font-size: .8rem; color: #334155; margin-bottom: .5rem; line-height: 1.6;
 }
-.src-chunk-label {
-    font-size: .68rem; color: #94A3B8;
-    margin-bottom: .25rem; display: flex; align-items: center; gap: 4px;
-}
+.src-chunk-label { font-size: .68rem; color: #94A3B8; margin-bottom: .25rem; display: flex; align-items: center; gap: 4px; }
+
+/* ── Feedback ── */
+.fb-label { font-size: .72rem; color: #94A3B8; display: flex; align-items: center; gap: 4px; }
 
 /* ── Sidebar structural ── */
 .sb-logo-wrap {
@@ -310,14 +349,12 @@ st.markdown("""
 .sb-logo-wrap img { width: 75%; max-width: 160px; }
 .sb-section {
     font-size: .65rem; font-weight: 700; text-transform: uppercase;
-    letter-spacing: .09em; color: rgba(255,255,255,.35) !important;
-    padding: .6rem 0 .25rem;
+    letter-spacing: .09em; color: rgba(255,255,255,.35) !important; padding: .6rem 0 .25rem;
 }
 .sb-icon-row {
     display: flex; align-items: center; gap: .55rem; padding: .45rem .5rem;
     border-radius: 8px; color: rgba(255,255,255,.5); font-size: .75rem;
 }
-.sb-icon-row svg { flex-shrink: 0; opacity: .7; }
 .stats-pill {
     background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
     border-radius: 20px; padding: 5px 12px; font-size: .7rem;
@@ -332,7 +369,7 @@ st.markdown("""
 .helpline-card strong { color: #fff; }
 .helpline-num { color: #FF9B6A; font-weight: 700; font-size: .85rem; }
 
-/* ── Sidebar download button ── */
+/* Sidebar download button */
 [data-testid="stSidebar"] [data-testid="stDownloadButton"] button {
     background: rgba(255,102,0,.15) !important;
     color: #FFAA70 !important;
@@ -342,6 +379,7 @@ st.markdown("""
     font-size: .8rem !important;
     padding: .4rem .85rem !important;
     margin-bottom: 4px !important;
+    min-height: 40px !important;
 }
 [data-testid="stSidebar"] [data-testid="stDownloadButton"] button:hover {
     background: rgba(255,102,0,.3) !important;
@@ -358,15 +396,99 @@ st.markdown("""
 }
 .au-footer strong { color: #002A75; }
 .au-footer a { color: #E64400; text-decoration: none; }
-.au-footer a:hover { text-decoration: underline; }
 
 /* ── Thinking animation ── */
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
-.thinking { color: #94A3B8; font-size: .83rem; font-style: italic;
-    display: flex; align-items: center; gap: 6px; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.15} }
+.thinking { color: #94A3B8; font-size: .83rem; font-style: italic; display: flex; align-items: center; gap: 6px; }
 .thinking span { animation: blink 1.2s infinite; }
-.thinking span:nth-child(2) { animation-delay: .2s; }
-.thinking span:nth-child(3) { animation-delay: .4s; }
+.thinking span:nth-child(2) { animation-delay: .25s; }
+.thinking span:nth-child(3) { animation-delay: .5s; }
+
+/* ═══════════════════════════════════════
+   RESPONSIVE DESIGN
+   ═══════════════════════════════════════ */
+
+/* ── Large tablet / small desktop (≤1200px) ── */
+@media screen and (max-width: 1200px) {
+    .cap-grid { grid-template-columns: repeat(3, 1fr); }
+    .au-header { padding: .85rem 1.2rem; }
+}
+
+/* ── Tablet (≤900px) ── */
+@media screen and (max-width: 900px) {
+    .cap-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    .au-header { padding: .75rem 1rem; gap: .85rem; }
+    .au-header img { height: 30px; }
+    .au-header-text h1 { font-size: .93rem; }
+    .au-header-text p { font-size: .7rem; }
+    .au-footer { gap: .35rem 1.2rem; font-size: .69rem; }
+    section.main > div.block-container { padding: .75rem .75rem 0.4rem !important; }
+}
+
+/* ── Mobile (≤640px) ── */
+@media screen and (max-width: 640px) {
+    section.main > div.block-container { padding: .5rem .5rem 0.3rem !important; }
+
+    /* Header compact */
+    .au-header { padding: .6rem .8rem; gap: .6rem; border-radius: 10px; margin-bottom: .75rem; }
+    .au-header img { height: 24px; }
+    .au-header-divider { display: none !important; }
+    .au-header-text h1 { font-size: .82rem; }
+    .au-header-text p { display: none !important; }
+    .au-badge { padding: 4px 9px; font-size: .63rem; }
+
+    /* Capability cards: 2-col on mobile */
+    .cap-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 7px !important; }
+    .cap-card { padding: .7rem .75rem; border-radius: 10px; }
+    .cap-card h5 { font-size: .73rem; }
+    .cap-card p  { font-size: .67rem; }
+
+    /* Welcome card */
+    .welcome-card { padding: .85rem .95rem; gap: .65rem; border-radius: 11px; }
+    .welcome-icon { width: 36px; height: 36px; min-width: 36px; border-radius: 8px; }
+    .welcome-card h4 { font-size: .88rem; }
+    .welcome-card p  { font-size: .78rem; }
+
+    /* Chat messages: tighter on mobile */
+    [data-testid="stChatMessage"] .stChatMessageContent {
+        padding: .65rem .85rem !important;
+        font-size: .83rem !important;
+        border-radius: 12px !important;
+    }
+
+    /* Source badges: smaller */
+    .src-badge { font-size: .66rem !important; padding: 2px 7px !important; }
+
+    /* Voice bar */
+    .voice-bar { padding: .45rem .75rem; border-radius: 10px; gap: .6rem; }
+    .voice-bar-label { font-size: .74rem; }
+    .voice-bar-hint { display: none !important; }
+
+    /* Footer: stack vertically */
+    .au-footer {
+        flex-direction: column; gap: .2rem; align-items: flex-start;
+        padding: .6rem .9rem; font-size: .69rem;
+    }
+
+    /* Larger touch targets for mobile */
+    .stButton > button { min-height: 44px !important; }
+    [data-testid="stChatInput"] textarea { font-size: .84rem !important; }
+
+    /* Suggested chips full width */
+    .sq-chip button { font-size: .75rem !important; padding: .35rem .75rem !important; }
+}
+
+/* ── Small mobile (≤400px) ── */
+@media screen and (max-width: 400px) {
+    .cap-grid { grid-template-columns: 1fr !important; }
+    .au-badge { display: none !important; }
+    .au-header { border-radius: 8px; }
+    .au-header-text h1 { font-size: .77rem; }
+    [data-testid="stChatMessage"] .stChatMessageContent {
+        padding: .55rem .7rem !important;
+        font-size: .8rem !important;
+    }
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -439,16 +561,15 @@ def render_source_row(sources, chunks):
             for s in sources
         )
         st.markdown(f'<div class="src-row">{badges}</div>', unsafe_allow_html=True)
-
     if chunks:
-        with st.expander(f"View {len(chunks)} source reference{'s' if len(chunks)>1 else ''}"):
+        with st.expander(f"View {len(chunks)} source reference{'s' if len(chunks) > 1 else ''}"):
             for c in chunks:
                 st.markdown(
                     f'<div class="src-chunk-label">'
                     f'{ICONS["file"]} <b>{c["source"]}</b> &nbsp;·&nbsp; {c["score"]:.0%} relevance'
                     f'</div>'
                     f'<div class="src-chunk">'
-                    f'{c["text"][:450]}{"…" if len(c["text"])>450 else ""}'
+                    f'{c["text"][:450]}{"…" if len(c["text"]) > 450 else ""}'
                     f'</div>',
                     unsafe_allow_html=True,
                 )
@@ -491,12 +612,12 @@ def render_welcome():
         <div>
             <h4>Hello! I'm AvantikaBot</h4>
             <p>Your AI guide to Avantika University — ask about academics, hostel,
-               health, transport, scholarships, programs, and more.</p>
+               health, transport, scholarships, programs, and more. Type or use the
+               microphone below to ask your question.</p>
         </div>
     </div>
     """, unsafe_allow_html=True)
 
-    # Capability cards
     cards = ""
     for ik, title, desc in CAPABILITIES:
         cards += (
@@ -521,6 +642,51 @@ def render_welcome():
             st.markdown('</div>', unsafe_allow_html=True)
 
 
+def render_voice_input():
+    """Speech-to-text bar above the chat input."""
+    if not STT_AVAILABLE:
+        return
+
+    st.markdown(
+        f'<div class="voice-bar">'
+        f'<span class="voice-bar-label">{ICONS["mic"]} Voice Input</span>'
+        f'<span class="voice-bar-hint">Click the button, speak your question, then click Stop</span>'
+        f'</div>',
+        unsafe_allow_html=True,
+    )
+
+    col_btn, col_status = st.columns([3, 9])
+    with col_btn:
+        stt_text = speech_to_text(
+            language="en-IN",
+            start_prompt="Start Speaking",
+            stop_prompt="Stop Recording",
+            just_once=True,
+            use_container_width=True,
+            key="stt_input",
+        )
+    with col_status:
+        last = st.session_state.get("last_stt", "")
+        if last:
+            st.markdown(
+                f'<div class="voice-transcript">'
+                f'{ICONS["mic"]} <i>"{last}"</i>'
+                f'</div>',
+                unsafe_allow_html=True,
+            )
+        else:
+            st.markdown(
+                '<p style="color:#CBD5E1;font-size:.77rem;margin:.4rem 0 0;">'
+                'Recognized text will appear here</p>',
+                unsafe_allow_html=True,
+            )
+
+    if stt_text:
+        st.session_state["last_stt"] = stt_text
+        st.session_state.pending = stt_text
+        st.rerun()
+
+
 # ── Sidebar ────────────────────────────────────────────────────────────────────
 def render_sidebar():
     with st.sidebar:
@@ -534,21 +700,18 @@ def render_sidebar():
         else:
             st.markdown('<div class="sb-logo-wrap"><span style="color:#fff;font-weight:800;font-size:1.3rem;">AU</span></div>', unsafe_allow_html=True)
 
-        # Stats pill
         q_count = len([m for m in st.session_state.get("messages", []) if m["role"] == "user"])
         st.markdown(
             f'<div class="stats-pill">'
-            f'{ICONS["message"]}'
-            f'&nbsp;{q_count} question{"s" if q_count != 1 else ""} this session'
+            f'{ICONS["message"]}&nbsp;{q_count} question{"s" if q_count != 1 else ""} this session'
             f'</div>',
             unsafe_allow_html=True,
         )
 
         st.markdown('<div class="sb-section">Quick Topics</div>', unsafe_allow_html=True)
         for icon_key, label, question in TOPICS:
-            svg = ICONS.get(icon_key, "")
             st.markdown(
-                f'<div class="sb-icon-row">{svg}'
+                f'<div class="sb-icon-row">{ICONS.get(icon_key, "")}'
                 f'<span style="font-size:.72rem;">{label}</span></div>',
                 unsafe_allow_html=True,
             )
@@ -558,7 +721,6 @@ def render_sidebar():
 
         st.markdown("---")
 
-        # Download chat
         chat_text = format_chat_download()
         if chat_text:
             st.markdown(
@@ -574,7 +736,6 @@ def render_sidebar():
                 key="dl_chat",
             )
 
-        # Clear
         st.markdown(
             f'<div class="sb-icon-row" style="margin-bottom:2px;">'
             f'{ICONS["trash"]}<span style="font-size:.72rem;color:rgba(255,255,255,.4);">Clear conversation</span></div>',
@@ -584,6 +745,7 @@ def render_sidebar():
             st.session_state.messages = []
             st.session_state.ratings  = {}
             st.session_state.pop("pending", None)
+            st.session_state.pop("last_stt", None)
             st.rerun()
 
         st.markdown(
@@ -625,8 +787,8 @@ def main():
     logo_html = (
         f'<img src="{LOGO_SRC}" alt="Avantika University" />'
         if LOGO_SRC else
-        '<span style="color:#fff;font-size:1.1rem;font-weight:800;">avantika<br>'
-        '<small style="font-weight:400;font-size:.65rem;letter-spacing:.15em;">UNIVERSITY</small></span>'
+        '<span style="color:#fff;font-size:1.05rem;font-weight:800;">avantika<br>'
+        '<small style="font-weight:400;font-size:.6rem;letter-spacing:.15em;">UNIVERSITY</small></span>'
     )
     st.markdown(f"""
     <div class="au-header">
@@ -634,7 +796,7 @@ def main():
         <div class="au-header-divider"></div>
         <div class="au-header-text">
             <h1>Student Knowledge Assistant</h1>
-            <p>Powered by official university documents &nbsp;·&nbsp; MIT Group Institution</p>
+            <p>Official university documents &nbsp;·&nbsp; MIT Group Institution</p>
         </div>
         <div class="au-badge">
             <span class="status-dot"></span>
@@ -643,16 +805,19 @@ def main():
     </div>
     """, unsafe_allow_html=True)
 
-    # ── Welcome or history ──
+    # ── Welcome or chat history ──
     if not st.session_state.messages:
         render_welcome()
     else:
         for idx, msg in enumerate(st.session_state.messages):
             render_message(msg, idx)
 
-    # ── Input ──
+    # ── Voice input bar ──
+    render_voice_input()
+
+    # ── Text input ──
     user_input = st.session_state.pop("pending", None) or st.chat_input(
-        "Ask anything about Avantika University…"
+        "Type your question here…"
     )
 
     if user_input:
@@ -670,14 +835,11 @@ def main():
             messages_payload = build_messages(user_input, chunks, history)
             response = ""
             placeholder = st.empty()
-
-            # Thinking indicator
             placeholder.markdown(
                 '<div class="thinking">Analyzing'
                 '<span>.</span><span>.</span><span>.</span></div>',
                 unsafe_allow_html=True,
             )
-
             try:
                 stream = groq_client.chat.completions.create(
                     model=GROQ_MODEL,
@@ -698,7 +860,7 @@ def main():
 
             sources = unique_sources(chunks)
             render_source_row(sources, chunks)
-            msg_idx = len(st.session_state.messages)  # index of the message we're about to append
+            msg_idx = len(st.session_state.messages)
             render_feedback(msg_idx)
 
         st.session_state.messages.append({
@@ -711,7 +873,7 @@ def main():
     # ── Footer ──
     st.markdown("""
     <div class="au-footer">
-        <span><strong>Avantika University</strong> &nbsp;·&nbsp; Ujjain, Madhya Pradesh — 456006</span>
+        <span><strong>Avantika University</strong> &nbsp;·&nbsp; Ujjain, MP — 456006</span>
         <span>General: <strong>7723013455</strong></span>
         <span>Admissions: <strong>9201953101</strong></span>
         <span>Email: <a href="mailto:info@avantika.edu.in">info@avantika.edu.in</a></span>
