@@ -4,6 +4,7 @@ Run once before starting the app: python ingest.py
 """
 import os
 import json
+import hashlib
 import numpy as np
 import faiss
 from sentence_transformers import SentenceTransformer
@@ -102,6 +103,16 @@ def build_knowledge_base():
     metadata = [{"text": c["text"], "source": c["source"]} for c in all_chunks]
     with open(os.path.join(VECTOR_STORE_DIR, "metadata.json"), "w", encoding="utf-8") as f:
         json.dump(metadata, f, ensure_ascii=False, indent=2)
+
+    # Write manifest so app.py can detect when KB changes
+    manifest = {}
+    for fname in sorted(os.listdir(KNOWLEDGE_DIR)):
+        if fname.endswith(".txt"):
+            fpath = os.path.join(KNOWLEDGE_DIR, fname)
+            with open(fpath, "rb") as f:
+                manifest[fname] = hashlib.md5(f.read()).hexdigest()
+    with open(os.path.join(VECTOR_STORE_DIR, "kb_manifest.json"), "w", encoding="utf-8") as f:
+        json.dump(manifest, f, indent=2)
 
     print(f"\nDone! Knowledge base saved to '{VECTOR_STORE_DIR}/'")
     print(f"Total chunks indexed: {len(all_chunks)}")

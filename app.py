@@ -2,6 +2,7 @@ import os
 import json
 import base64
 import random
+import hashlib
 import subprocess
 import sys
 from pathlib import Path
@@ -645,13 +646,33 @@ def unique_sources(chunks):
     return out
 
 
+def _kb_manifest():
+    manifest = {}
+    for f in sorted(Path("knowledge_base").glob("*.txt")):
+        manifest[f.name] = hashlib.md5(f.read_bytes()).hexdigest()
+    return manifest
+
+
 def ensure_kb():
-    if not (Path(VECTOR_STORE_DIR, "index.faiss").exists() and
-            Path(VECTOR_STORE_DIR, "metadata.json").exists()):
-        with st.spinner("Building knowledge base (~1 min)…"):
+    index_path    = Path(VECTOR_STORE_DIR, "index.faiss")
+    meta_path     = Path(VECTOR_STORE_DIR, "metadata.json")
+    manifest_path = Path(VECTOR_STORE_DIR, "kb_manifest.json")
+
+    needs_build = not (index_path.exists() and meta_path.exists())
+
+    if not needs_build and manifest_path.exists():
+        try:
+            stored = json.loads(manifest_path.read_text(encoding="utf-8"))
+            needs_build = (stored != _kb_manifest())
+        except Exception:
+            needs_build = True
+
+    if needs_build:
+        with st.spinner("Building knowledge base — please wait (~30 s)…"):
             r = subprocess.run([sys.executable, "ingest.py"], capture_output=True, text=True)
         if r.returncode != 0:
             st.error(f"Failed to build knowledge base:\n{r.stderr}"); st.stop()
+        st.cache_resource.clear()
         st.rerun()
 
 
