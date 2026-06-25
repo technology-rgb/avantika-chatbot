@@ -902,7 +902,7 @@ def main():
     # ── Input: mic button embedded inside the chat input via JS ──
     render_mic_component()
     user_input = st.session_state.pop("pending", None) or st.chat_input(
-        "Type or speak your question…"
+        "What's on your mind?"
     )
 
     if user_input:
