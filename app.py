@@ -576,25 +576,27 @@ def render_source_row(sources, chunks):
 
 
 def render_feedback(msg_idx: int):
-    rating = st.session_state.ratings.get(msg_idx)
-    col_up, col_dn, col_lbl = st.columns([0.7, 0.7, 8])
-    with col_up:
-        label = "✓" if rating == "up" else ICONS["thumbs_up"]
-        if st.button(label, key=f"up_{msg_idx}", help="Helpful"):
-            st.session_state.ratings[msg_idx] = None if rating == "up" else "up"
-            st.rerun()
-    with col_dn:
-        label = "✓" if rating == "down" else ICONS["thumbs_down"]
-        if st.button(label, key=f"dn_{msg_idx}", help="Not helpful"):
-            st.session_state.ratings[msg_idx] = None if rating == "down" else "down"
-            st.rerun()
-    with col_lbl:
-        if rating == "up":
-            st.markdown('<div class="fb-label" style="color:#16A34A;">Thanks for your feedback!</div>', unsafe_allow_html=True)
-        elif rating == "down":
-            st.markdown('<div class="fb-label" style="color:#DC2626;">We\'ll work to improve.</div>', unsafe_allow_html=True)
+    col_fb, col_msg = st.columns([2, 8])
+    with col_fb:
+        sentiment = st.feedback("thumbs", key=f"feedback_{msg_idx}")
+    with col_msg:
+        if sentiment == 1:
+            st.markdown(
+                '<p class="fb-label" style="color:#16A34A;margin:0 0 0 .25rem;">'
+                'Thanks for your feedback!</p>',
+                unsafe_allow_html=True,
+            )
+        elif sentiment == 0:
+            st.markdown(
+                '<p class="fb-label" style="color:#DC2626;margin:0 0 0 .25rem;">'
+                "We'll work to improve.</p>",
+                unsafe_allow_html=True,
+            )
         else:
-            st.markdown('<div class="fb-label">Was this helpful?</div>', unsafe_allow_html=True)
+            st.markdown(
+                '<p class="fb-label" style="margin:0 0 0 .25rem;">Was this helpful?</p>',
+                unsafe_allow_html=True,
+            )
 
 
 def render_message(msg: dict, idx: int):
@@ -743,7 +745,6 @@ def render_sidebar():
         )
         if st.button("Clear Conversation", key="clear"):
             st.session_state.messages = []
-            st.session_state.ratings  = {}
             st.session_state.pop("pending", None)
             st.session_state.pop("last_stt", None)
             st.rerun()
@@ -770,8 +771,6 @@ def main():
 
     if "messages" not in st.session_state:
         st.session_state.messages = []
-    if "ratings" not in st.session_state:
-        st.session_state.ratings = {}
 
     render_sidebar()
 
@@ -812,12 +811,10 @@ def main():
         for idx, msg in enumerate(st.session_state.messages):
             render_message(msg, idx)
 
-    # ── Voice input bar ──
+    # ── Input area: voice + text together ──
     render_voice_input()
-
-    # ── Text input ──
     user_input = st.session_state.pop("pending", None) or st.chat_input(
-        "Type your question here…"
+        "Type your question, or use the mic above to speak…"
     )
 
     if user_input:
