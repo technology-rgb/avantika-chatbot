@@ -1,6 +1,7 @@
 import os
 import json
 import base64
+import random
 import subprocess
 import sys
 from pathlib import Path
@@ -64,15 +65,24 @@ TOPICS = [
     ("palette", "B.Des Program",              "Tell me about the Bachelor of Design (B.Des) program."),
 ]
 
-SUGGESTED_Q = [
-    "What is the CGPA cut-off for First Class with Distinction?",
-    "What items are prohibited in the hostel?",
-    "What are the ATKT rules for B.Tech students?",
-    "How do I report ragging? What is the helpline number?",
-    "What B.Tech specializations are offered?",
-    "Who is the Vice Chancellor of Avantika University?",
-    "What are the MBA specializations available?",
-    "How do I apply for a transcript or degree certificate?",
+# Pool of 16 questions — 4 are randomly shown each session (shuffleable)
+SUGGESTION_POOL = [
+    ("chart",   "What is the CGPA cut-off for First Class with Distinction?"),
+    ("home",    "What items are prohibited in the hostel?"),
+    ("cpu",     "What are the ATKT rules for B.Tech students?"),
+    ("shield",  "How do I report ragging? What is the helpline number?"),
+    ("cpu",     "What B.Tech specializations are offered at Avantika?"),
+    ("book",    "Who is the Vice Chancellor of Avantika University?"),
+    ("award",   "What MBA specializations are available?"),
+    ("file",    "How do I get my academic transcript or degree certificate?"),
+    ("heart",   "What are the health centre timings and facilities?"),
+    ("bus",     "How does the university transport service work?"),
+    ("palette", "What entrance exams are accepted for B.Des admissions?"),
+    ("award",   "How do I apply for a merit scholarship?"),
+    ("book",    "What is the maximum allowed duration to complete B.Tech?"),
+    ("chart",   "How is SGPA different from CGPA?"),
+    ("phone",   "What are the contact numbers for different departments?"),
+    ("shield",  "How does the mentoring system work at Avantika University?"),
 ]
 
 CAPABILITIES = [
@@ -388,16 +398,37 @@ section.main > div.block-container {
 .cap-card h5 { color: #1A202C; font-size: .78rem; font-weight: 600; margin: 0 0 .2rem; }
 .cap-card p  { color: #64748B; font-size: .71rem; margin: 0; line-height: 1.4; }
 
-/* ── Suggested question chips ── */
-.sq-chip button {
-    background: #fff !important; color: #002A75 !important;
-    border: 1.5px solid #C4D4F0 !important; border-radius: 20px !important;
-    font-size: .79rem !important; padding: .32rem .9rem !important;
-    font-weight: 500 !important; width: 100% !important;
-    min-height: 44px !important;
+/* ── Suggested question cards ── */
+.sq-wrap button {
+    background: #fff !important;
+    border: 1.5px solid #E8EDF5 !important;
+    border-left: 3px solid #E64400 !important;
+    border-radius: 0 10px 10px 0 !important;
+    padding: .65rem .9rem .65rem .85rem !important;
+    width: 100% !important; text-align: left !important;
+    font-size: .79rem !important; font-weight: 500 !important;
+    color: #334155 !important; min-height: 52px !important;
+    line-height: 1.45 !important; white-space: normal !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,.05) !important;
     transition: all .15s !important;
 }
-.sq-chip button:hover { background: #002A75 !important; color: #fff !important; border-color: #002A75 !important; }
+.sq-wrap button:hover {
+    border-left-color: #002A75 !important;
+    background: #EEF3FF !important; color: #002A75 !important;
+    box-shadow: 0 3px 10px rgba(0,42,117,.1) !important;
+    transform: translateX(3px) !important;
+}
+.sq-refresh button {
+    background: transparent !important;
+    border: 1px solid rgba(0,42,117,.2) !important;
+    border-radius: 8px !important; color: #94A3B8 !important;
+    font-size: .85rem !important; min-height: 28px !important;
+    padding: 0 .5rem !important;
+}
+.sq-refresh button:hover {
+    background: #EEF3FF !important; border-color: #002A75 !important;
+    color: #002A75 !important;
+}
 
 /* ── Source badges ── */
 .src-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
@@ -560,8 +591,8 @@ section.main > div.block-container {
     .stButton > button { min-height: 44px !important; }
     [data-testid="stChatInput"] textarea { font-size: .84rem !important; }
 
-    /* Suggested chips full width */
-    .sq-chip button { font-size: .75rem !important; padding: .35rem .75rem !important; }
+    /* Suggestion cards full width on mobile */
+    .sq-wrap button { font-size: .75rem !important; min-height: 48px !important; }
 }
 
 /* ── Small mobile (≤400px) ── */
@@ -716,15 +747,27 @@ def render_welcome():
         )
     st.markdown(f'<div class="cap-grid">{cards}</div>', unsafe_allow_html=True)
 
-    st.markdown(
-        '<p style="color:#64748B;font-size:.79rem;font-weight:600;margin:.2rem 0 .5rem;">Try asking:</p>',
-        unsafe_allow_html=True,
-    )
+    if "shown_suggestions" not in st.session_state:
+        st.session_state.shown_suggestions = random.sample(SUGGESTION_POOL, 4)
+    h_col, r_col = st.columns([9, 1])
+    with h_col:
+        st.markdown(
+            '<p style="color:#94A3B8;font-size:.7rem;font-weight:700;'
+            'text-transform:uppercase;letter-spacing:.07em;margin:.3rem 0 .4rem;">'
+            'Not sure where to start?</p>',
+            unsafe_allow_html=True,
+        )
+    with r_col:
+        st.markdown('<div class="sq-refresh">', unsafe_allow_html=True)
+        if st.button("↻", key="refresh_sq", help="Shuffle suggestions"):
+            st.session_state.shown_suggestions = random.sample(SUGGESTION_POOL, 4)
+            st.rerun()
+        st.markdown('</div>', unsafe_allow_html=True)
     cols = st.columns(2)
-    for i, q in enumerate(SUGGESTED_Q):
+    for i, (icon_key, q) in enumerate(st.session_state.shown_suggestions):
         with cols[i % 2]:
-            st.markdown('<div class="sq-chip">', unsafe_allow_html=True)
-            if st.button(q, key=f"sq_{i}"):
+            st.markdown('<div class="sq-wrap">', unsafe_allow_html=True)
+            if st.button(q, key=f"sq_{i}", use_container_width=True):
                 st.session_state.pending = q
                 st.rerun()
             st.markdown('</div>', unsafe_allow_html=True)
