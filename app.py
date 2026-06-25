@@ -11,12 +11,6 @@ from groq import Groq
 from sentence_transformers import SentenceTransformer
 from dotenv import load_dotenv
 
-try:
-    from streamlit_mic_recorder import speech_to_text
-    STT_AVAILABLE = True
-except ImportError:
-    STT_AVAILABLE = False
-
 load_dotenv()
 
 # ── Config ─────────────────────────────────────────────────────────────────────
@@ -89,6 +83,122 @@ CAPABILITIES = [
     ("shield",  "Student Wellbeing",    "Anti-ragging policy, mentoring, counselling, reporting"),
     ("phone",   "Contacts & Helplines", "Department numbers, key contacts, emergency lines"),
 ]
+
+# ── Mic-inside-input component ────────────────────────────────────────────────
+# Renders a 0-height iframe; JS inside repositions it to sit left of the
+# chat-input submit button and injects speech into the textarea via DOM.
+MIC_HTML = """<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:transparent;overflow:hidden;width:100%;height:100%}
+#mic{
+  width:36px;height:36px;border-radius:50%;
+  border:none;background:transparent;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:background .18s;outline:none;
+}
+#mic:hover{background:rgba(0,42,117,.12)}
+#mic.on{background:rgba(230,68,0,.12);animation:rpl 1.1s infinite}
+@keyframes rpl{
+  0%  {box-shadow:0 0 0 0 rgba(230,68,0,.5)}
+  70% {box-shadow:0 0 0 10px rgba(230,68,0,0)}
+  100%{box-shadow:0 0 0 0 rgba(230,68,0,0)}
+}
+</style>
+</head>
+<body>
+<button id="mic" title="Click to speak" onclick="toggle()">
+  <svg id="ico" viewBox="0 0 24 24" width="20" height="20" fill="none"
+       stroke="#002A75" stroke-width="2.2"
+       stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+    <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+    <line x1="12" y1="19" x2="12" y2="23"/>
+    <line x1="8"  y1="23" x2="16" y2="23"/>
+  </svg>
+</button>
+<script>
+var rec=null,active=false;
+
+function toggle(){active?stop():start()}
+
+function start(){
+  var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){alert('Voice input requires Chrome or Edge.');return}
+  rec=new SR();
+  rec.lang='en-IN';
+  rec.continuous=false;
+  rec.interimResults=false;
+  rec.onstart=function(){
+    active=true;
+    document.getElementById('mic').classList.add('on');
+    document.getElementById('ico').setAttribute('stroke','#E64400');
+  };
+  rec.onresult=function(e){fill(e.results[0][0].transcript)};
+  rec.onerror=function(){stop()};
+  rec.onend=function(){stop()};
+  rec.start();
+}
+
+function stop(){
+  active=false;
+  document.getElementById('mic').classList.remove('on');
+  document.getElementById('ico').setAttribute('stroke','#002A75');
+  if(rec){try{rec.stop()}catch(e){}}
+}
+
+function fill(text){
+  try{
+    var ta=window.parent.document.querySelector('[data-testid="stChatInput"] textarea');
+    if(!ta)return;
+    /* React-controlled textarea needs native value setter + synthetic event */
+    var setter=Object.getOwnPropertyDescriptor(
+      window.parent.HTMLTextAreaElement.prototype,'value').set;
+    setter.call(ta,text);
+    ta.dispatchEvent(new Event('input',{bubbles:true}));
+    ta.focus();
+  }catch(e){console.warn('fill:',e)}
+}
+
+function position(){
+  try{
+    var doc=window.parent.document;
+    var btn=doc.querySelector('[data-testid="stChatInput"] button');
+    var frame=window.frameElement;
+    if(!btn||!frame)return;
+    var r=btn.getBoundingClientRect();
+    /* Place mic button left of the send button, vertically centred */
+    frame.style.cssText=[
+      'position:fixed',
+      'top:'+(r.top+(r.height-36)/2)+'px',
+      'left:'+(r.left-42)+'px',
+      'width:38px','height:38px',
+      'z-index:9999',
+      'border:none','background:transparent',
+      'border-radius:50%','overflow:hidden','display:block'
+    ].join(';');
+    /* Give textarea extra right padding so text never hides behind mic */
+    var ta=doc.querySelector('[data-testid="stChatInput"] textarea');
+    if(ta&&!ta._micDone){
+      var cur=parseInt(window.parent.getComputedStyle(ta).paddingRight)||0;
+      ta.style.paddingRight=(cur+46)+'px';
+      ta._micDone=true;
+    }
+  }catch(e){}
+}
+
+window.addEventListener('load',function(){
+  position();
+  /* Reposition after every Streamlit re-render (it moves DOM around) */
+  setInterval(position,600);
+  window.parent.addEventListener('resize',position);
+});
+</script>
+</body>
+</html>"""
 
 SYSTEM_PROMPT = """You are AvantikaBot, the official AI student assistant for Avantika University, Ujjain, Madhya Pradesh (an MIT Group Institution).
 
@@ -233,34 +343,10 @@ section.main > div.block-container {
 [data-testid="stChatInput"] button { background: #002A75 !important; border-radius: 50% !important; border: none !important; }
 [data-testid="stChatInput"] button:hover { background: #E64400 !important; }
 
-/* ── Voice input row ── */
-.voice-bar {
-    display: flex; align-items: center; gap: .9rem;
-    background: #fff; border-radius: 12px;
-    padding: .55rem 1rem; margin-bottom: .5rem;
-    border: 1.5px solid #C4D4F0;
-    box-shadow: 0 1px 6px rgba(0,42,117,.07);
-}
-.voice-bar-label {
-    display: flex; align-items: center; gap: .4rem;
-    font-size: .78rem; font-weight: 600; color: #002A75;
-    white-space: nowrap;
-}
-.voice-bar-hint {
-    font-size: .74rem; color: #94A3B8; margin: 0; line-height: 1.4;
-}
-.voice-transcript {
-    background: #F0F5FF; border: 1px solid #C4D4F0;
-    border-radius: 8px; padding: .4rem .8rem;
-    font-size: .8rem; color: #002A75; font-style: italic;
-    margin-top: .3rem;
-}
-
-/* streamlit-mic-recorder button override */
+/* ── Mic-in-input: the component iframe is repositioned by its own JS ── */
 [data-testid="stCustomComponentV1"] iframe {
     border: none !important;
-    border-radius: 8px !important;
-    overflow: hidden !important;
+    background: transparent !important;
 }
 
 /* ── Welcome ── */
@@ -644,49 +730,9 @@ def render_welcome():
             st.markdown('</div>', unsafe_allow_html=True)
 
 
-def render_voice_input():
-    """Speech-to-text bar above the chat input."""
-    if not STT_AVAILABLE:
-        return
-
-    st.markdown(
-        f'<div class="voice-bar">'
-        f'<span class="voice-bar-label">{ICONS["mic"]} Voice Input</span>'
-        f'<span class="voice-bar-hint">Click the button, speak your question, then click Stop</span>'
-        f'</div>',
-        unsafe_allow_html=True,
-    )
-
-    col_btn, col_status = st.columns([3, 9])
-    with col_btn:
-        stt_text = speech_to_text(
-            language="en-IN",
-            start_prompt="Start Speaking",
-            stop_prompt="Stop Recording",
-            just_once=True,
-            use_container_width=True,
-            key="stt_input",
-        )
-    with col_status:
-        last = st.session_state.get("last_stt", "")
-        if last:
-            st.markdown(
-                f'<div class="voice-transcript">'
-                f'{ICONS["mic"]} <i>"{last}"</i>'
-                f'</div>',
-                unsafe_allow_html=True,
-            )
-        else:
-            st.markdown(
-                '<p style="color:#CBD5E1;font-size:.77rem;margin:.4rem 0 0;">'
-                'Recognized text will appear here</p>',
-                unsafe_allow_html=True,
-            )
-
-    if stt_text:
-        st.session_state["last_stt"] = stt_text
-        st.session_state.pending = stt_text
-        st.rerun()
+def render_mic_component():
+    """Embeds the mic button inside the chat input via iframe + JS positioning."""
+    st.components.v1.html(MIC_HTML, height=0, scrolling=False)
 
 
 # ── Sidebar ────────────────────────────────────────────────────────────────────
@@ -746,7 +792,6 @@ def render_sidebar():
         if st.button("Clear Conversation", key="clear"):
             st.session_state.messages = []
             st.session_state.pop("pending", None)
-            st.session_state.pop("last_stt", None)
             st.rerun()
 
         st.markdown(
@@ -811,10 +856,10 @@ def main():
         for idx, msg in enumerate(st.session_state.messages):
             render_message(msg, idx)
 
-    # ── Input area: voice + text together ──
-    render_voice_input()
+    # ── Input: mic button embedded inside the chat input via JS ──
+    render_mic_component()
     user_input = st.session_state.pop("pending", None) or st.chat_input(
-        "Type your question, or use the mic above to speak…"
+        "Type or speak your question…"
     )
 
     if user_input:
