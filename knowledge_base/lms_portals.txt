@@ -1,0 +1,69 @@
+LEARNING MANAGEMENT SYSTEMS (LMS) AT AVANTIKA UNIVERSITY
+==========================================================
+
+===
+
+CANVAS LMS - OVERVIEW AND ACCESS
+Canvas is the primary Learning Management System used at Avantika University.
+Login URL: https://avantika.instructure.com
+Access requirement: Only students registered with an official Avantika University email (ending with @avantika.edu.in) can log in to Canvas. Personal email addresses (Gmail, Yahoo, etc.) are NOT accepted.
+Canvas is used across all programmes at Avantika University including BDes, MDes, BCA, BBA, BCom, MBA, MCA, BSc, BALLB, BBALLB, LLM, IMBA, EMBA, and PhD programmes.
+Students can access Canvas on desktop browsers (Chrome, Firefox, Edge recommended) or via the Canvas Student mobile app (iOS and Android).
+If you cannot login to Canvas, contact the IT helpdesk or your programme coordinator with your official email ID and enrollment number.
+
+===
+
+MOODLE LMS - OVERVIEW AND ACCESS
+Moodle is the Learning Management System used specifically for Engineering, Management, and Law programmes at Avantika University.
+Moodle Login URL: https://moodle.avantika.edu.in
+Moodle is used by the following programmes: BTech (Bachelor of Technology), MTech (Master of Technology), MBA (Master of Business Administration), IMBA (Integrated MBA), EMBA (Executive MBA), BALLB (BA LLB), BBALLB (BBA LLB), LLM (Master of Laws), and BCA Honours.
+Access requirement: Students must use their official Avantika University credentials. Login with your university-issued username and password.
+Moodle provides course content, assignments, quizzes, grade tracking, and discussion forums for engineering, management, and law students.
+If you forget your Moodle password, use the "Forgotten your username or password?" link on the Moodle login page, or contact the IT department.
+
+===
+
+DIFFERENCE BETWEEN CANVAS AND MOODLE AT AVANTIKA UNIVERSITY
+Canvas (avantika.instructure.com) is the university-wide LMS for all programmes.
+Moodle (moodle.avantika.edu.in) is used specifically for Engineering, Management, and Law programmes.
+Students in BTech, MBA, IMBA, EMBA, BALLB, BBALLB, and LLM programmes may have access to both platforms depending on their courses.
+BDes, MDes, BCA, BBA, BCom, BSc(A), BSc(CP), and MCA students primarily use Canvas.
+When in doubt about which platform to use, ask your course instructor or check the course syllabus.
+
+===
+
+TIPS FOR USING CANVAS LMS EFFECTIVELY
+1. Enable notifications: Go to Account > Notifications and turn on email and mobile push notifications for assignments, grades, and announcements so you never miss a deadline.
+2. Use the Canvas Student app: Download the free Canvas Student app on your smartphone (iOS/Android) to access courses, submit assignments, and check grades from anywhere.
+3. Check the Calendar view: The Canvas Calendar (Courses > Calendar) shows all assignment due dates and exam schedules in one place. You can sync it with Google Calendar or Outlook.
+4. Submit assignments early: Upload your assignment files before the deadline. Canvas locks submissions automatically at the due time. Late submissions may not be accepted.
+5. Read announcements regularly: Instructors post important updates and changes through Announcements. Check the course Announcements section at least once every day.
+6. Use Modules for structured learning: Most courses organize content in Modules. Go through them in order to ensure you complete prerequisites before moving ahead.
+7. Check grades and feedback: After submissions are graded, view detailed feedback in Grades > Assignment > View Feedback. Use this to improve future work.
+8. Participate in Discussions: Course discussion boards count towards participation grades. Post thoughtful responses and reply to at least two classmates.
+9. Download resources offline: If you have limited internet access, download lecture notes, PDFs, and videos from Canvas while connected to campus WiFi.
+10. Keep your profile updated: Set a profile photo and keep your contact email current so instructors and classmates can reach you.
+
+===
+
+TIPS FOR USING MOODLE LMS EFFECTIVELY
+1. Complete your profile: Upload a profile photo and fill in your contact details. This helps instructors identify you during online submissions and discussions.
+2. Subscribe to course forums: In each Moodle course, subscribe to the News Forum and Discussion Forums to receive email updates when instructors post important announcements.
+3. Download course resources early: Download all lecture slides, PDFs, and reading materials at the start of the term. This ensures you have access even during internet outages.
+4. Track deadlines in the Calendar: Moodle's Calendar block (on the right side of your dashboard) shows all upcoming assignment and quiz deadlines. Check it weekly.
+5. Attempt quizzes on a stable internet connection: Moodle online quizzes have time limits. Always use a stable internet connection (campus WiFi preferred) before starting a quiz.
+6. Check the Gradebook regularly: Go to Course > Grades to see your marks for all assessments. Contact your instructor if you notice any discrepancy within 7 days of result publication.
+7. Use the Activity Completion tracker: Moodle shows a checklist of course activities. Complete each item (watch videos, read PDFs, attempt quizzes) to track your progress.
+8. Participate in Discussion Forums: Forum posts contribute to participation marks in many courses. Be respectful, cite sources, and respond constructively to peers.
+9. Save your work frequently: For long-answer assignment submissions, type in a text editor first, then paste into Moodle. Moodle sessions can time out and you may lose unsaved work.
+10. Use the Mobile App: Download the Moodle Mobile app (iOS/Android) to access course materials, submit assignments, and receive push notifications on your smartphone.
+
+===
+
+COMMON LMS LOGIN ISSUES AND SOLUTIONS
+Problem: Cannot login to Canvas — Solution: Ensure you are using your official @avantika.edu.in email address. Reset your password via the university IT portal or contact IT helpdesk.
+Problem: Cannot login to Moodle — Solution: Use the "Forgotten password" link on moodle.avantika.edu.in. If the issue persists, contact IT support with your enrollment number.
+Problem: Course not visible on LMS — Solution: Courses appear only after the instructor enrolls students. Contact your course instructor or programme coordinator if a course is missing.
+Problem: Assignment submission not working — Solution: Check that your file is in an accepted format (PDF, DOCX, JPG, etc.) and within the file size limit. Try a different browser. Clear browser cache and cookies.
+Problem: Cannot see grades — Solution: Grades are visible only after the instructor publishes them. Check back after the announced result date.
+IT Helpdesk: Contact the university IT department at technology@avantika.edu.in or visit the IT support desk on campus.

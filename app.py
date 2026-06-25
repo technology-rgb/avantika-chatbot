@@ -17,10 +17,21 @@ load_dotenv()
 
 # ── Config ─────────────────────────────────────────────────────────────────────
 VECTOR_STORE_DIR  = "vector_store"
+KNOWLEDGE_DIR     = "knowledge_base"
 EMBED_MODEL       = "all-MiniLM-L6-v2"
 GROQ_MODEL        = "llama-3.3-70b-versatile"
 TOP_K             = 5
 MAX_HISTORY_PAIRS = 4
+
+CANVAS_URL = "https://avantika.instructure.com"
+MOODLE_URL = "https://moodle.avantika.edu.in"
+
+LMS_INTENT_WORDS = {
+    "login", "log in", "sign in", "signin", "canvas", "moodle", "lms",
+    "learning portal", "learning management", "instructure", "online portal",
+    "course portal", "access portal", "access courses", "online courses",
+    "submit assignment", "check grades", "view grades",
+}
 
 # ── Lucide-style SVG icons (18 × 18, stroke 1.8, rounded caps) ────────────────
 def icon(path_d, size=18):
@@ -648,7 +659,7 @@ def unique_sources(chunks):
 
 def _kb_manifest():
     manifest = {}
-    for f in sorted(Path("knowledge_base").glob("*.txt")):
+    for f in sorted(Path(KNOWLEDGE_DIR).glob("*.txt")):
         manifest[f.name] = hashlib.md5(f.read_bytes()).hexdigest()
     return manifest
 
@@ -743,6 +754,50 @@ def render_message(msg: dict, idx: int):
         if msg["role"] == "assistant":
             render_source_row(msg.get("sources", []), msg.get("chunks", []))
             render_feedback(idx)
+
+
+def has_lms_intent(text: str) -> bool:
+    t = text.lower()
+    return any(w in t for w in LMS_INTENT_WORDS)
+
+
+@st.dialog("Access Learning Portal")
+def show_lms_dialog():
+    st.markdown(
+        '<p style="color:#64748B;font-size:.85rem;text-align:center;margin:.2rem 0 1rem;">'
+        'Sign in with your official <strong>@avantika.edu.in</strong> email.</p>',
+        unsafe_allow_html=True,
+    )
+    c1, c2 = st.columns(2)
+    with c1:
+        st.markdown(
+            '<div style="background:#EEF3FF;border:1.5px solid #C4D4F0;border-radius:12px;'
+            'padding:.75rem;text-align:center;margin-bottom:.5rem;">'
+            '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#002A75" '
+            'stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'
+            '<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>'
+            '<path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>'
+            '<p style="color:#002A75;font-weight:700;font-size:.82rem;margin:.4rem 0 .15rem;">Canvas LMS</p>'
+            '<p style="color:#64748B;font-size:.7rem;margin:0;">All programmes</p>'
+            '</div>',
+            unsafe_allow_html=True,
+        )
+        st.link_button("Open Canvas", CANVAS_URL, use_container_width=True, type="primary")
+    with c2:
+        st.markdown(
+            '<div style="background:#FFF3E0;border:1.5px solid #FFB74D;border-radius:12px;'
+            'padding:.75rem;text-align:center;margin-bottom:.5rem;">'
+            '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#B84400" '
+            'stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'
+            '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>'
+            '<path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>'
+            '<p style="color:#B84400;font-weight:700;font-size:.82rem;margin:.4rem 0 .15rem;">Moodle LMS</p>'
+            '<p style="color:#64748B;font-size:.7rem;margin:0;">Engg · Mgmt · Law</p>'
+            '</div>',
+            unsafe_allow_html=True,
+        )
+        st.link_button("Open Moodle", MOODLE_URL, use_container_width=True)
+    st.caption("Need help? Email technology@avantika.edu.in")
 
 
 def render_welcome():
@@ -975,6 +1030,10 @@ def main():
             "sources": sources,
             "chunks":  chunks,
         })
+
+    # ── LMS login popup — triggered when user asks about Canvas/Moodle/login ──
+    if user_input and has_lms_intent(user_input):
+        show_lms_dialog()
 
     # ── Footer ──
     st.markdown("""
